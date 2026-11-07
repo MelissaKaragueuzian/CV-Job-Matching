@@ -1,0 +1,69 @@
+SAMPLE CV - JUNIOR SOFTWARE DEVELOPER
+=====================================
+
+ALEX MORGAN
+Beirut, Lebanon
+Phone: +961 XX XXX XXX
+Email: alex.morgan@example.com
+LinkedIn: linkedin.com/in/your-profile
+GitHub: github.com/your-username
+
+PROFESSIONAL SUMMARY
+--------------------
+Motivated junior software developer with experience building web applications,
+working with relational databases, and solving problems using clean, maintainable
+code. Interested in full-stack development, cloud technologies, and artificial
+intelligence.
+
+EDUCATION
+---------
+Bachelor of Science in Computer Science
+Example University | 2022 - 2026
+Relevant coursework: Object-Oriented Programming, Databases, Algorithms,
+Web Development, Software Engineering, Artificial Intelligence
+
+TECHNICAL SKILLS
+----------------
+Programming Languages: C#, Python, JavaScript, SQL
+Frameworks & Tools: ASP.NET Core MVC, .NET, Git, GitHub, Visual Studio
+Web: HTML, CSS, REST APIs
+Databases: SQL Server, MySQL
+Cloud: Microsoft Azure, AWS (basic)
+Soft Skills: Problem-solving, teamwork, communication, time management
+
+PROJECTS
+--------
+Municipal E-Services Platform | ASP.NET Core MVC, C#, SQL Server
+- Developed a web application for submitting and managing municipal requests.
+- Implemented role-based access for administrators, staff, and citizens.
+- Designed database tables and integrated document-upload functionality.
+
+Inventory Management System | C#, SQL Server
+- Built features for tracking products, stock levels, and sales.
+- Implemented product search, low-stock alerts, and sales reporting.
+
+WORK EXPERIENCE
+---------------
+Software Development Intern | Example Tech Company
+June 2025 - August 2025
+- Assisted with debugging and testing internal applications.
+- Wrote SQL queries and supported database maintenance tasks.
+- Collaborated with developers using Git for version control.
+
+CERTIFICATIONS & ACTIVITIES
+---------------------------
+- Introduction to Cloud Computing - Sample Online Course (2025)
+- Volunteer programming mentor for beginners (2024 - 2025)
+
+LANGUAGES
+---------
+English: Fluent
+French: Intermediate
+Arabic: Fluent
+
+REFERENCES
+----------
+Available upon request.
+
+NOTE: This CV contains fictional example details. Replace all information
+with your own before applying for a job.
