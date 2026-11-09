@@ -1,0 +1,22 @@
+# Business style, cool palette: navy sidebar, steel-blue accent, slate text.
+[theme]
+base = "light"
+primaryColor = "#1f5f99"            # steel blue: buttons, sliders, active tab, chart bars
+backgroundColor = "#f5f7fa"         # cool off-white page
+secondaryBackgroundColor = "#e8edf3" # inputs and code blocks
+textColor = "#1b2635"               # dark slate
+borderColor = "#d3dbe5"
+showWidgetBorder = true
+baseRadius = "0.4rem"
+font = "sans-serif"
+
+[theme.sidebar]
+backgroundColor = "#13263b"         # navy
+secondaryBackgroundColor = "#1d3550"
+textColor = "#e3eaf2"
+primaryColor = "#6aa6dc"
+borderColor = "#2c4866"
+
+[server]
+# Matches MAX_UPLOAD_MB in app.py: CVs are small, so big uploads are refused.
+maxUploadSize = 5
