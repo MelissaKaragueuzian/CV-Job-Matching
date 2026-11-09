@@ -107,3 +107,43 @@ python -m pytest
 ### Short explanation for the presentation
 
 Person 1's module is the front door of the project. It prepares a JSON file of real public job postings from the Hugging Face dataset its-zion-18/Jobs-tabular-dataset, drops duplicate rows, and stores one `job_text` field per job. It also reads a CV from PDF, Word, or plain text. A regular-expression cleaner removes email addresses and web links and turns extra spaces into one space, while skill names such as C++, C#, and .NET stay intact. If a PDF is only a scanned image, the reader stops and explains that OCR is required. Other teammates can call `read_cv`, `clean_text`, and `load_jobs`.
+
+## Person 3 — Linguistic and Skill Analysis
+
+├── notebooks/
+│ └── skills.ipynb
+├── cv_job_matching/
+│ └── skills.py
+└── tests/
+└── test_skills.py
+
+skills.py reads the cleaned CV text from Person 1 (not the stemmed text, because stemming breaks dictionary matching) and reuses Person 2's tokenizer and lemmatizer.
+
+It does four things:
+
+POS tagging: pos_tag_text, pos_summary, extract_keywords_by_pos (nouns and adjectives only).
+Word n-grams: get_ngrams, top_ngrams. Phrases are built inside sentences and never start or end with a stopword.
+Skill detection: detect_skills uses a dictionary of about 85 skills in 10 categories (programming, data and AI, cloud, cybersecurity, engineering and design, business, education, soft skills...). Each alias is matched with a regular expression, so java does not match javascript and C++, C#, .NET are found whole. Words that are also normal English (Excel, SAP) only count when capitalized.
+Missing skills: find_missing_skills (dictionary skills the job wants but the CV lacks) and find_missing_terms (other important job words missing from the CV).
+python
+from cv_job_matching import read_cv, clean_text, load_jobs, preprocess, preprocess_jobs
+from cv_job_matching.matching import rank_jobs
+from cv_job_matching.skills import analyze_ranked_jobs
+
+cv_clean = clean_text(read_cv("samples/sample_cv.pdf")) # for skills
+cv_proc = preprocess(cv_clean) # for TF-IDF
+jobs = preprocess_jobs(load_jobs())
+
+ranked = rank_jobs(cv_proc, jobs, top_n=5) # Person 4
+results = analyze_ranked_jobs(cv_clean, ranked) # Person 3
+
+top = results[0]
+print(top["title"], top["similarity_score"])
+print(top["skills"]["matched_skills"])
+print(top["skills"]["missing_skills"])
+
+analyze_skills(cv_text, job_text) returns a dict with cv_skills, job_skills, matched_skills, missing_skills, skill_match_pct, missing_terms and job_bigrams.
+
+Limits: the dictionary is written by hand, so a skill that is not in it is only caught as a "missing term". The module does not understand context ("no experience with Java" still counts as Java).
+
+Run the examples with python -m cv_job_matching.skills.
