@@ -59,9 +59,7 @@ PIPELINE = [
 ]
 
 
-# ---------------------------------------------------------------------------
 # Helpers
-# ---------------------------------------------------------------------------
 @st.cache_data(show_spinner="Preprocessing the job descriptions...")
 def load_processed_jobs(method: str) -> pd.DataFrame:
     """Load the jobs and add Person 2's processed_text column.
@@ -378,9 +376,7 @@ with cv_panel:
             ) or "Summary"  # clicking the selected option again clears it
 
 with main:
-    # ---------------------------------------------------------------------------
     # Header
-    # ---------------------------------------------------------------------------
     st.title("Smart CV & Job Matching")
     st.caption("Find the job descriptions that best match a CV, and the skills it is missing.")
 
@@ -394,9 +390,7 @@ with main:
                 st.markdown(f"{icon} **{number}. {name}**  \n:gray[{what}]")
         st.stop()
 
-    # ---------------------------------------------------------------------------
     # Run the pipeline
-    # ---------------------------------------------------------------------------
     cleaned = clean_text(raw_text)                         # 1. Person 1
     if not cleaned:
         st.warning("The CV is empty, so there is nothing to match.", icon=":material/warning:")
@@ -414,9 +408,7 @@ with main:
     results = analyze_ranked_jobs(cleaned, ranked)
     cv_skills = detect_skills(cleaned)
 
-    # ---------------------------------------------------------------------------
     # Summary row
-    # ---------------------------------------------------------------------------
     best = results[0]["similarity_score"] if results else 0.0
     avg_skill = (sum(r["skills"]["skill_match_pct"] for r in results) / len(results)) if results else 0.0
     k1, k2, k3, k4 = st.columns(4)
@@ -426,9 +418,7 @@ with main:
     k4.metric("Skill match", f"{avg_skill:.0f}%", border=True,
               help="Average share of each shown job's skills that the CV has.")
 
-    # ---------------------------------------------------------------------------
     # Right panel: what the app read from the CV, added under the view switch
-    # ---------------------------------------------------------------------------
     with cv_box:
         if cv_category:
             # The dataset says which field this CV belongs to, so the audience
@@ -453,9 +443,7 @@ with main:
         [":material/work: Top matches", ":material/bar_chart: Compare", ":material/account_tree: Pipeline"]
     )
 
-    # ---------------------------------------------------------------------------
     # Tab 1: job cards
-    # ---------------------------------------------------------------------------
     with tab_results:
         if not results:
             st.warning("No job passes the current filters. Lower the minimum similarity "
@@ -495,9 +483,7 @@ with main:
                 with st.expander("Full job description", icon=":material/article:"):
                     st.text(job["job_text"])
 
-    # ---------------------------------------------------------------------------
     # Tab 2: chart + table
-    # ---------------------------------------------------------------------------
     with tab_compare:
         if not results:
             st.caption("Nothing to compare with the current filters.")
@@ -542,9 +528,7 @@ with main:
                 },
             )
 
-    # ---------------------------------------------------------------------------
     # Tab 3: what each step does
-    # ---------------------------------------------------------------------------
     with tab_pipeline:
         st.caption("What each teammate's step does to this CV. Long lists are cut.")
         steps = preprocessing_steps(cleaned)

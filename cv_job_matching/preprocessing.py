@@ -59,9 +59,7 @@ _tokenizer = RegexpTokenizer(TOKEN_PATTERN)
 _stemmer = PorterStemmer()
 
 
-# ---------------------------------------------------------------------------
 # NLTK data
-# ---------------------------------------------------------------------------
 
 def ensure_nltk_data():
     """Download the NLTK word lists this module needs, only if missing."""
@@ -88,9 +86,7 @@ def _lemmatizer():
     return WordNetLemmatizer()
 
 
-# ---------------------------------------------------------------------------
 # The four steps
-# ---------------------------------------------------------------------------
 
 def tokenize(text):
     """Split text into tokens, keeping C++, C#, .NET and Node.js whole.
@@ -156,9 +152,7 @@ def _is_protected(token):
     return token in PROTECTED_WORDS or not token.isalpha()
 
 
-# ---------------------------------------------------------------------------
 # Full pipeline
-# ---------------------------------------------------------------------------
 
 def preprocess_tokens(text, method="lemmatize", extra_stopwords=None):
     """Run every step and return the final list of tokens.
@@ -226,9 +220,7 @@ def preprocess_jobs(jobs, text_column="job_text", method="lemmatize",
     return result
 
 
-# ---------------------------------------------------------------------------
 # Input checks
-# ---------------------------------------------------------------------------
 
 def _check_text(text):
     if not isinstance(text, str):
@@ -240,9 +232,7 @@ def _check_method(method):
         raise ValueError(f"method must be one of {METHODS}, not {method!r}.")
 
 
-# ---------------------------------------------------------------------------
 # Before/after examples (fictional)
-# ---------------------------------------------------------------------------
 
 EXAMPLES = [
     "Developed REST APIs with Python and Flask; managed PostgreSQL databases.",

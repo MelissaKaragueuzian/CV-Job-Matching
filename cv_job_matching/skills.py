@@ -39,9 +39,7 @@ from cv_job_matching.preprocessing import (
     tokenize,
 )
 
-# ---------------------------------------------------------------------------
 # NLTK data (the POS tagger needs its own model)
-# ---------------------------------------------------------------------------
 
 _TAGGER_RESOURCES = (
     ("averaged_perceptron_tagger_eng", "taggers/averaged_perceptron_tagger_eng"),
@@ -64,9 +62,7 @@ def ensure_tagger_data():
             nltk.download(resource, quiet=True)
 
 
-# ---------------------------------------------------------------------------
 # 1) POS tagging
-# ---------------------------------------------------------------------------
 
 NOUN_AND_ADJECTIVE_TAGS = ("NN", "NNS", "NNP", "NNPS", "JJ")
 
@@ -123,9 +119,7 @@ def pos_summary(text):
     return dict(counts)
 
 
-# ---------------------------------------------------------------------------
 # 2) Word n-grams
-# ---------------------------------------------------------------------------
 
 def generate_ngrams(tokens, n=2):
     """Slide a window of ``n`` tokens over a list.
@@ -174,9 +168,7 @@ def top_ngrams(text, n=2, top_k=10, lemmatize=False):
     return Counter(get_ngrams(text, n, lemmatize)).most_common(top_k)
 
 
-# ---------------------------------------------------------------------------
 # 3) Skill detection: dictionary + regex
-# ---------------------------------------------------------------------------
 
 # category -> canonical skill -> aliases found in real CVs and job ads.
 # The dataset covers many fields (engineering, sales, marketing, UX,
@@ -349,9 +341,7 @@ def group_by_category(skills):
     return {category: sorted(items) for category, items in sorted(grouped.items())}
 
 
-# ---------------------------------------------------------------------------
 # 4) Missing skills and missing terms
-# ---------------------------------------------------------------------------
 
 def find_missing_skills(cv_text, job_text):
     """Dictionary skills the job asks for that the CV does not show."""
@@ -373,9 +363,7 @@ def find_missing_terms(cv_text, job_text, top_k=10):
     return [word for word, _ in missing[:top_k]]
 
 
-# ---------------------------------------------------------------------------
 # 5) One call for the app
-# ---------------------------------------------------------------------------
 
 def analyze_skills(cv_text, job_text):
     """Compare one CV with one job description.
@@ -429,9 +417,7 @@ def analyze_ranked_jobs(cv_text, ranked_jobs, job_text_field="job_text"):
     return analyzed
 
 
-# ---------------------------------------------------------------------------
 # Fictional examples
-# ---------------------------------------------------------------------------
 
 EXAMPLE_CV = (
     "Jane Doe. Master student in AI. Skills: Python, SQL, pandas, numpy, "

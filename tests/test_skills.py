@@ -28,7 +28,7 @@ JOB = (
 )
 
 
-# --- POS tagging -----------------------------------------------------------
+# POS tagging
 
 def test_pos_tag_text_returns_token_tag_pairs():
     tags = dict(pos_tag_text("The engineer builds complex models"))
@@ -57,7 +57,7 @@ def test_pos_summary_counts_groups():
     assert summary["VERB"] >= 1
 
 
-# --- n-grams ---------------------------------------------------------------
+# n-grams 
 
 def test_generate_ngrams():
     tokens = ["machine", "learning", "model"]
@@ -96,7 +96,7 @@ def test_top_ngrams_counts_repeats():
     assert top_ngrams(text, 2, 1) == [("project management", 2)]
 
 
-# --- skill detection -------------------------------------------------------
+# skill detection
 
 def test_detect_skills_basic():
     assert detect_skills("Built REST APIs in Python and C++.") == [
@@ -139,7 +139,7 @@ def test_group_by_category():
     assert grouped["Soft skills"] == ["communication"]
 
 
-# --- missing skills --------------------------------------------------------
+# missing skills
 
 def test_find_missing_skills():
     missing = find_missing_skills(CV, JOB)
@@ -154,7 +154,7 @@ def test_find_missing_terms_ignores_words_in_cv():
     assert "steel" not in missing
 
 
-# --- full analysis ---------------------------------------------------------
+# full analysis
 
 def test_analyze_skills_structure_and_values():
     result = analyze_skills(CV, JOB)
